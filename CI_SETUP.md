@@ -9,9 +9,10 @@ This project reads runtime keys from `Info.plist` keys:
 In Codemagic UI, add:
 - `SUPABASE_URL` (plain text)
 - `SUPABASE_ANON_KEY` (secure)
-- `APP_STORE_CONNECT_ISSUER_ID` (plain text)
-- `APP_STORE_CONNECT_KEY_IDENTIFIER` (plain text)
-- `APP_STORE_CONNECT_PRIVATE_KEY` (secure, full .p8 contents)
+- Apple Developer Portal integration (Team settings)
+   - Add an App Store Connect API key and give it a name.
+   - Use that exact key name in `codemagic.yaml` under:
+      - `workflows.mexpat-ios.integrations.app_store_connect`
 
 Use your project URL:
 - `https://juyrhwdygiesqbuoujdh.supabase.co`
@@ -47,8 +48,9 @@ In your Xcode project once created:
 - generation of `Mexpat/Config/Secrets.ci.xcconfig`
 - IPA build and TestFlight publishing
 
-Publishing is configured with `auth: api_key` to avoid dependency on a named
-Codemagic UI integration.
+Publishing is configured with `auth: integration`.
+That means the key name in `codemagic.yaml` must exactly match the
+App Store Connect integration key name in Codemagic.
 
 Adjust these values in `codemagic.yaml`:
 - `XCODE_PROJECT`

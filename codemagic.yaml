@@ -2,6 +2,9 @@ workflows:
   mexpat-ios:
     name: Mexpat iOS Build & Distribute
     max_build_duration: 60
+    integrations:
+      # Must match the App Store Connect API key name in Codemagic Team Integrations.
+      app_store_connect: codemagic
     environment:
       xcode: latest
       vars:
@@ -11,9 +14,6 @@ workflows:
       # Configure these in Codemagic UI (Environment variables / groups):
       # SUPABASE_URL (plain text)
       # SUPABASE_ANON_KEY (secure)
-      # APP_STORE_CONNECT_ISSUER_ID
-      # APP_STORE_CONNECT_KEY_IDENTIFIER
-      # APP_STORE_CONNECT_PRIVATE_KEY
 
     scripts:
       - name: Verify required environment variables
@@ -47,10 +47,7 @@ workflows:
 
     publishing:
       app_store_connect:
-        auth: api_key
-        issuer_id: $APP_STORE_CONNECT_ISSUER_ID
-        key_id: $APP_STORE_CONNECT_KEY_IDENTIFIER
-        api_key: $APP_STORE_CONNECT_PRIVATE_KEY
+        auth: integration
         submit_to_testflight: true
         beta_groups:
           - Internal Testers
