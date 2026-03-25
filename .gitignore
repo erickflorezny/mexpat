@@ -1,0 +1,37 @@
+# macOS / Xcode
+.DS_Store
+*.swp
+
+# Xcode user data
+xcuserdata/
+*.xcuserstate
+*.xcscmblueprint
+
+# Build artifacts
+DerivedData/
+build/
+*.ipa
+*.dSYM
+*.dSYM.zip
+
+# Swift Package Manager
+.build/
+.swiftpm/
+Packages/
+Package.resolved
+
+# Secrets / config
+Mexpat/Config/Secrets.local.xcconfig
+Mexpat/Config/Secrets.ci.xcconfig
+.env
+.env.*
+
+# Ruby / bundler (if used for iOS tooling)
+.bundle/
+vendor/bundle/
+
+# Fastlane artifacts
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/test_output/
