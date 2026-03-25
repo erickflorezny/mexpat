@@ -1,0 +1,46 @@
+name: Mexpat
+
+options:
+  minimumXcodeGenVersion: 2.38.0
+  createIntermediateGroups: true
+
+settings:
+  base:
+    SWIFT_VERSION: 5.10
+    IPHONEOS_DEPLOYMENT_TARGET: 17.0
+
+packages:
+  Supabase:
+    url: https://github.com/supabase/supabase-swift.git
+    from: 2.0.0
+
+targets:
+  Mexpat:
+    type: application
+    platform: iOS
+    deploymentTarget: "17.0"
+    sources:
+      - path: Mexpat
+    info:
+      path: Mexpat/Info.plist
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.yourcompany.mexpat
+        CODE_SIGN_STYLE: Automatic
+        CURRENT_PROJECT_VERSION: 1
+        MARKETING_VERSION: 1.0.0
+        GENERATE_INFOPLIST_FILE: NO
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        TARGETED_DEVICE_FAMILY: "1,2"
+    dependencies:
+      - package: Supabase
+
+schemes:
+  Mexpat:
+    build:
+      targets:
+        Mexpat: all
+    run:
+      config: Debug
+    archive:
+      config: Release

@@ -37,10 +37,17 @@ workflows:
           EOF
           echo "Generated Mexpat/Config/Secrets.ci.xcconfig"
 
+      - name: Generate Xcode project
+        script: |
+          set -euo pipefail
+          brew install xcodegen
+          xcodegen generate --spec project.yml
+          ls -la
+
       - name: Build IPA
         script: |
           set -euo pipefail
-          xcode-project use-profiles
+          xcode-project use-profiles --custom-export-options='{"method":"app-store"}'
           xcode-project build-ipa \
             --project "$XCODE_PROJECT" \
             --scheme "$XCODE_SCHEME"
