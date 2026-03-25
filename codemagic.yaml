@@ -7,6 +7,9 @@ workflows:
       app_store_connect: codemagic
     environment:
       xcode: latest
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: $APP_BUNDLE_ID
       groups:
         # Attach your Codemagic variable group(s) here.
         # If your group has a different name, replace "Default" accordingly.
@@ -14,7 +17,7 @@ workflows:
       vars:
         XCODE_PROJECT: "Mexpat.xcodeproj"
         XCODE_SCHEME: "Mexpat"
-        APP_BUNDLE_ID: "com.yourcompany.mexpat"
+        APP_BUNDLE_ID: "com.estudioflorez.mexpat"
         SUPABASE_URL: "https://juyrhwdygiesqbuoujdh.supabase.co"
       # Configure these in Codemagic UI (Environment variables / groups):
       # SUPABASE_URL (plain text)
@@ -25,6 +28,11 @@ workflows:
         script: |
           set -euo pipefail
           test -n "${SUPABASE_ANON_KEY:-}" || (echo "SUPABASE_ANON_KEY is missing (check variable name and attached env group)" && exit 1)
+          test -n "${APP_BUNDLE_ID:-}" || (echo "APP_BUNDLE_ID is missing" && exit 1)
+          if [ "${APP_BUNDLE_ID}" = "com.yourcompany.mexpat" ]; then
+            echo "APP_BUNDLE_ID is still placeholder. Set your real bundle id in Codemagic workflow vars."
+            exit 1
+          fi
 
       - name: Generate CI xcconfig for runtime keys
         script: |
