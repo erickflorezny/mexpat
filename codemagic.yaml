@@ -11,6 +11,7 @@ workflows:
         XCODE_PROJECT: "Mexpat.xcodeproj"
         XCODE_SCHEME: "Mexpat"
         APP_BUNDLE_ID: "com.yourcompany.mexpat"
+        SUPABASE_URL: "https://juyrhwdygiesqbuoujdh.supabase.co"
       # Configure these in Codemagic UI (Environment variables / groups):
       # SUPABASE_URL (plain text)
       # SUPABASE_ANON_KEY (secure)
@@ -19,7 +20,6 @@ workflows:
       - name: Verify required environment variables
         script: |
           set -euo pipefail
-          test -n "${SUPABASE_URL:-}" || (echo "SUPABASE_URL is missing" && exit 1)
           test -n "${SUPABASE_ANON_KEY:-}" || (echo "SUPABASE_ANON_KEY is missing" && exit 1)
 
       - name: Generate CI xcconfig for runtime keys
