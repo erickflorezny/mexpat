@@ -9,6 +9,9 @@ This project reads runtime keys from `Info.plist` keys:
 In Codemagic UI, add:
 - `SUPABASE_URL` (plain text)
 - `SUPABASE_ANON_KEY` (secure)
+- `APP_STORE_CONNECT_ISSUER_ID` (plain text)
+- `APP_STORE_CONNECT_KEY_IDENTIFIER` (plain text)
+- `APP_STORE_CONNECT_PRIVATE_KEY` (secure, full .p8 contents)
 
 Use your project URL:
 - `https://juyrhwdygiesqbuoujdh.supabase.co`
@@ -43,6 +46,9 @@ In your Xcode project once created:
 - env var validation
 - generation of `Mexpat/Config/Secrets.ci.xcconfig`
 - IPA build and TestFlight publishing
+
+Publishing is configured with `auth: api_key` to avoid dependency on a named
+Codemagic UI integration.
 
 Adjust these values in `codemagic.yaml`:
 - `XCODE_PROJECT`
