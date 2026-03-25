@@ -7,6 +7,10 @@ workflows:
       app_store_connect: codemagic
     environment:
       xcode: latest
+      groups:
+        # Attach your Codemagic variable group(s) here.
+        # If your group has a different name, replace "default" accordingly.
+        - default
       vars:
         XCODE_PROJECT: "Mexpat.xcodeproj"
         XCODE_SCHEME: "Mexpat"
@@ -20,7 +24,7 @@ workflows:
       - name: Verify required environment variables
         script: |
           set -euo pipefail
-          test -n "${SUPABASE_ANON_KEY:-}" || (echo "SUPABASE_ANON_KEY is missing" && exit 1)
+          test -n "${SUPABASE_ANON_KEY:-}" || (echo "SUPABASE_ANON_KEY is missing (check variable name and attached env group)" && exit 1)
 
       - name: Generate CI xcconfig for runtime keys
         script: |
