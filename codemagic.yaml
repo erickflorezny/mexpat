@@ -9,8 +9,8 @@ workflows:
       xcode: latest
       groups:
         # Attach your Codemagic variable group(s) here.
-        # If your group has a different name, replace "default" accordingly.
-        - default
+        # If your group has a different name, replace "Default" accordingly.
+        - Default
       vars:
         XCODE_PROJECT: "Mexpat.xcodeproj"
         XCODE_SCHEME: "Mexpat"
